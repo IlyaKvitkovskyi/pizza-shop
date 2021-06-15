@@ -1,8 +1,10 @@
 import React from 'react';
 
-function SortPopup() {
+function SortPopup({ items }) {
   const [visiblePopup, setVisiblePopup] = React.useState(false);
+  const [activeItem, setActiveItem] = React.useState(0);
   const sortRef = React.useRef();
+  const activeLabel = items[activeItem];
 
   const toggleVisiblePopup = () => {
     setVisiblePopup(!visiblePopup);
@@ -12,6 +14,11 @@ function SortPopup() {
     if (!e.path.includes(sortRef.current)) {
       setVisiblePopup(false);
     }
+  };
+
+  const onSelectItem = (index) => {
+    setActiveItem(index);
+    setVisiblePopup(false);
   };
 
   React.useEffect(() => {
@@ -37,14 +44,20 @@ function SortPopup() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={toggleVisiblePopup}>популярности</span>
+        <span onClick={toggleVisiblePopup}>{activeLabel}</span>
       </div>
       {visiblePopup && (
         <div className="sort__popup">
           <ul>
-            <li className="active">популярности</li>
-            <li>цене</li>
-            <li>алфавиту</li>
+            {items &&
+              items.map((name, index) => (
+                <li
+                  onClick={() => onSelectItem(index)}
+                  className={activeItem === index ? 'active' : ''}
+                  key={`${name}_${index}`}>
+                  {name}
+                </li>
+              ))}
           </ul>
         </div>
       )}
