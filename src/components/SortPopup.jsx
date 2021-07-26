@@ -68,6 +68,7 @@ const SortPopup = React.memo(function SortPopup({ items, activeSortType, onClick
   );
 });
 
+
 SortPopup.propTypes = {
   activeSortType: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
