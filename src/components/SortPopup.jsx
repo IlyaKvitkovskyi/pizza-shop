@@ -55,7 +55,7 @@ const SortPopup = React.memo(function SortPopup({ items, activeSortType, onClick
             {items &&
               items.map((obj, index) => (
                 <li
-                  onClick={() => onSelectItem(obj.type)}
+                  onClick={() => onSelectItem(obj)}
                   className={activeSortType === obj.type ? 'active' : ''}
                   key={`${obj.type}_${index}`}>
                   {obj.name}
@@ -67,7 +67,6 @@ const SortPopup = React.memo(function SortPopup({ items, activeSortType, onClick
     </div>
   );
 });
-
 
 SortPopup.propTypes = {
   activeSortType: PropTypes.string.isRequired,
