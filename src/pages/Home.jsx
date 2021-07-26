@@ -18,7 +18,11 @@ function Home() {
   const { category, sortBy } = useSelector(({ filters }) => filters);
 
   React.useEffect(() => {
+<<<<<<< Updated upstream
     dispatch(fetchPizzas());
+=======
+    dispatch(fetchPizzas(sortBy, category));
+>>>>>>> Stashed changes
   }, [category, sortBy]);
 
   const onSelectCategory = React.useCallback((index) => {
