@@ -11,7 +11,7 @@ export const fetchPizzas = (sortBy, category) => (dispatch) => {
     payload: false,
   });
 
-  axios.get('http://localhost:3001/pizzas').then(({ data }) => {
+  axios.get(`http://localhost:3001/pizzas?category=${category}`).then(({ data }) => {
     dispatch(setPizzas(data));
   });
 };
